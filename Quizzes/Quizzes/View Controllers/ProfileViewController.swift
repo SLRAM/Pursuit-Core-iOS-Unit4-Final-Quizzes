@@ -10,9 +10,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    private var profileView = ProfileView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "profile"
+        view.addSubview(profileView)
 
     }
 
