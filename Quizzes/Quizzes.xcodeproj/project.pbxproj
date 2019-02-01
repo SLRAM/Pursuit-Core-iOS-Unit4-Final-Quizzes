@@ -23,6 +23,8 @@
 		97F10B8F2204B063004E00C1 /* QuizCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10B8E2204B063004E00C1 /* QuizCollectionViewCell.swift */; };
 		97F10B912204B9FA004E00C1 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10B902204B9FA004E00C1 /* SearchView.swift */; };
 		97F10B932204BAA6004E00C1 /* SearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10B922204BAA6004E00C1 /* SearchCollectionViewCell.swift */; };
+		97F10B952204C392004E00C1 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10B942204C391004E00C1 /* CreateView.swift */; };
+		97F10B972204C39E004E00C1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10B962204C39E004E00C1 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		97F10B8E2204B063004E00C1 /* QuizCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCollectionViewCell.swift; sourceTree = "<group>"; };
 		97F10B902204B9FA004E00C1 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		97F10B922204BAA6004E00C1 /* SearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		97F10B942204C391004E00C1 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		97F10B962204C39E004E00C1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 			children = (
 				97F10B8B2204ADE8004E00C1 /* QuizView.swift */,
 				97F10B902204B9FA004E00C1 /* SearchView.swift */,
+				97F10B942204C391004E00C1 /* CreateView.swift */,
+				97F10B962204C39E004E00C1 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -227,9 +233,11 @@
 				97F10B842204A8CA004E00C1 /* QuizViewController.swift in Sources */,
 				97F10B8C2204ADE8004E00C1 /* QuizView.swift in Sources */,
 				97F10B8F2204B063004E00C1 /* QuizCollectionViewCell.swift in Sources */,
+				97F10B952204C392004E00C1 /* CreateView.swift in Sources */,
 				97F10B8A2204A8FE004E00C1 /* ProfileViewController.swift in Sources */,
 				97F10B882204A8EA004E00C1 /* CreateViewController.swift in Sources */,
 				97F10B862204A8D9004E00C1 /* SearchViewController.swift in Sources */,
+				97F10B972204C39E004E00C1 /* ProfileView.swift in Sources */,
 				577118C12203796A00B9DD0B /* AppDelegate.swift in Sources */,
 				97F10B912204B9FA004E00C1 /* SearchView.swift in Sources */,
 				577118D522037A9F00B9DD0B /* AppError.swift in Sources */,

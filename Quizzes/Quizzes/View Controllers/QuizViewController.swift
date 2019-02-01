@@ -17,6 +17,7 @@ class QuizViewController: UIViewController {
         self.view.addSubview(quizView)
         quizView.myQuizCollectionView.dataSource = self
         quizView.myQuizCollectionView.delegate = self
+        self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
     }
     
 

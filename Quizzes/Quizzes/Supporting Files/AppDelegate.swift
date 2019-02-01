@@ -9,35 +9,52 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
   var window: UIWindow?
 
-
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        if viewController is CreateViewController {
+//            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "CreateViewController") {
+//                tabBarController.present(newVC, animated: true)
+//                return false
+//            }
+//        }
+//        
+//        return true
+//    }
+    
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     
     let quizVC = QuizViewController()
     quizVC.tabBarItem = UITabBarItem(title: "Quizes", image: UIImage(named: "quizIcon"), tag: 0)
+    quizVC.title = "My Quizzes"
     let quizNav = UINavigationController.init(rootViewController: quizVC)
     
     let searchVC = SearchViewController()
+    searchVC.title = "Search Quizzes Online"
     searchVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarItem.SystemItem.search, tag: 1)
 
 
     
     let createVC = CreateViewController()
+//    createVC.restorationIdentifier(
     createVC.tabBarItem = UITabBarItem(title: "Create", image: UIImage(named: "createIcon"), tag: 2)
+    createVC.title = "Create Quiz"
+    let createNav = UINavigationController.init(rootViewController: createVC)
+
 
     let profileVC = ProfileViewController()
     profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileUnfilled"), tag: 3)
-    
+    profileVC.title = "Profile"
+    let profileNav = UINavigationController.init(rootViewController: profileVC)
     
     //this is for protocol to work so that the settings view controller can change the best viewcontroller without persistence. includes protocol code on settings and extension on best
 //    setVC.delegate = bestVC
     
     let tab = UITabBarController()
-    tab.viewControllers = [quizNav,searchVC,createVC,profileVC]
+    tab.viewControllers = [quizNav,searchVC,createNav,profileNav]
     
     
     

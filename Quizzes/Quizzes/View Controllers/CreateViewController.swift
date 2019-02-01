@@ -10,9 +10,13 @@ import UIKit
 
 class CreateViewController: UIViewController {
 
+    private let createView = CreateView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(createView)
+//        var createViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CreateViewController") as CreateViewController
 
+        
         // Do any additional setup after loading the view.
     }
     
