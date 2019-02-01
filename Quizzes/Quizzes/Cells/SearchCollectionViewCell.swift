@@ -7,11 +7,11 @@
 //
 
 import UIKit
-//protocol SearchCollectionViewCellDelegate: AnyObject {
-//    //needs an alert action
-//}
+protocol SearchCollectionViewCellDelegate: AnyObject {
+    func actionAlert()
+}
 class SearchCollectionViewCell: UICollectionViewCell {
-    //    weak var delegate: QuizCollectionViewCellDelegate?
+        weak var delegate: SearchCollectionViewCellDelegate?
     
     public lazy var cellLabel: UILabel = {
         let label = UILabel()
@@ -24,12 +24,13 @@ class SearchCollectionViewCell: UICollectionViewCell {
     lazy var cellButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "addIconFilled"), for: .normal)
-        //        button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
+                button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
         return button
     }()
-    //    @objc func cellButtonPressed(_ sender: UIButton) {
-    //        print("Search + button pressed")
-    //    }
+        @objc func cellButtonPressed(_ sender: UIButton) {
+            delegate?.actionAlert()
+            print("Search + button pressed")
+        }
     
     
     //    override func prepareForReuse() {

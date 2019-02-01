@@ -10,32 +10,36 @@ import UIKit
 
 class CreateView: UIView {
     
-    lazy var titleTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = .white
-        textField.layer.cornerRadius = 10.0
-        textField.layer.borderWidth = 2.0
-        textField.layer.borderColor = #colorLiteral(red: 0.8529050946, green: 0.8478356004, blue: 0.8568023443, alpha: 0.4653253425).cgColor
-        textField.placeholder = "Enter the quiz title"
+    lazy var titleTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .white
+        textView.layer.cornerRadius = 10.0
+        textView.layer.borderWidth = 2.0
+        textView.layer.borderColor = #colorLiteral(red: 0.8529050946, green: 0.8478356004, blue: 0.8568023443, alpha: 0.4653253425).cgColor
+        textView.textColor = .gray
+        textView.text = "Enter the quiz title"
+        textView.tag = 0
 
 
-        return textField
+        return textView
     }()
-    lazy var firstQuizTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        textField.textColor = .gray
-        textField.placeholder = "Enter first quiz fact"
+    lazy var firstQuizTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        textView.textColor = .gray
+        textView.text = "Enter first quiz fact"
+        textView.tag = 1
 
+        return textView
+    }()
+    lazy var secondQuizTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        textView.textColor = .gray
+        textView.text = "Enter second quiz fact"
+        textView.tag = 2
         
-        return textField
-    }()
-    lazy var secondQuizTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        textField.textColor = .gray
-        textField.placeholder = "Enter second quiz fact"
-        return textField
+        return textView
     }()
 
     override init(frame: CGRect) {
@@ -61,27 +65,27 @@ extension CreateView {
         setupSecondTextField()
     }
     func setupTitleTextField() {
-        addSubview(titleTextField)
-        titleTextField.translatesAutoresizingMaskIntoConstraints = false
-        titleTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        titleTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        titleTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
-        titleTextField.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.07).isActive = true
+        addSubview(titleTextView)
+        titleTextView.translatesAutoresizingMaskIntoConstraints = false
+        titleTextView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        titleTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        titleTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        titleTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.07).isActive = true
     }
     func setupFirstQuizTextField() {
-        addSubview(firstQuizTextField)
-        firstQuizTextField.translatesAutoresizingMaskIntoConstraints = false
-        firstQuizTextField.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 10).isActive = true
-        firstQuizTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        firstQuizTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
-        firstQuizTextField.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.20).isActive = true
+        addSubview(firstQuizTextView)
+        firstQuizTextView.translatesAutoresizingMaskIntoConstraints = false
+        firstQuizTextView.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 10).isActive = true
+        firstQuizTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        firstQuizTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        firstQuizTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.20).isActive = true
     }
     func setupSecondTextField() {
-        addSubview(secondQuizTextField)
-        secondQuizTextField.translatesAutoresizingMaskIntoConstraints = false
-        secondQuizTextField.topAnchor.constraint(equalTo: firstQuizTextField.bottomAnchor, constant: 10).isActive = true
-        secondQuizTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
-        secondQuizTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
-        secondQuizTextField.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.20).isActive = true
+        addSubview(secondQuizTextView)
+        secondQuizTextView.translatesAutoresizingMaskIntoConstraints = false
+        secondQuizTextView.topAnchor.constraint(equalTo: firstQuizTextView.bottomAnchor, constant: 10).isActive = true
+        secondQuizTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        secondQuizTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        secondQuizTextView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.20).isActive = true
     }
 }

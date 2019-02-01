@@ -8,8 +8,16 @@
 
 import UIKit
 
+protocol ProfileViewDelegate: AnyObject {
+    func profileImage()
+    func profileName()
+}
+
 class ProfileView: UIView {
-    private let profileObjectView = ProfileObjectView()
+    
+    weak var delegate: ProfileViewDelegate?
+    
+    private let profileObjectView = UIView()
     lazy var editLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
@@ -18,6 +26,32 @@ class ProfileView: UIView {
         
         return label
     }()
+    lazy var profileImageButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = button.bounds.width/2.0 + 65
+        button.clipsToBounds = true
+        button.setImage(UIImage(named: "placeholderImage"), for: .normal)
+        button.addTarget(self, action: #selector(profileImagePressed), for: .touchUpInside)
+        return button
+    }()
+    @objc func profileImagePressed(_ sender: UIButton) {
+        print("Profile image pressed")
+        delegate?.profileImage()
+        //        delegate?.actionSheet(tag: sender.tag)
+    }
+    
+    lazy var profileNameButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("@username", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        button.addTarget(self, action: #selector(profileNamePressed), for: .touchUpInside)
+        return button
+    }()
+    @objc func profileNamePressed(_ sender: UIButton) {
+        print("Profile name pressed")
+        delegate?.profileName()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -40,6 +74,8 @@ extension ProfileView {
     func setupCollectionView() {
         setupEditLabel()
         setupProfileObjectView()
+        setupImageButton()
+        setupNameButton()
     }
     func setupEditLabel() {
         addSubview(editLabel)
@@ -57,5 +93,22 @@ extension ProfileView {
         profileObjectView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
         profileObjectView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
         profileObjectView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.40).isActive = true
+        profileObjectView.backgroundColor = .white
+    }
+    func setupImageButton() {
+        addSubview(profileImageButton)
+        profileImageButton.translatesAutoresizingMaskIntoConstraints = false
+        profileImageButton.topAnchor.constraint(equalTo: profileObjectView.topAnchor, constant: 30).isActive = true
+        profileImageButton.heightAnchor.constraint(equalTo: profileObjectView.heightAnchor, multiplier: 0.45).isActive = true
+        profileImageButton.widthAnchor.constraint(equalTo: profileImageButton.heightAnchor, multiplier: 1.0).isActive = true
+        profileImageButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
+    func setupNameButton() {
+        addSubview(profileNameButton)
+        profileNameButton.translatesAutoresizingMaskIntoConstraints = false
+        profileNameButton.bottomAnchor.constraint(equalTo: profileObjectView.bottomAnchor, constant: -30).isActive = true
+        profileNameButton.leadingAnchor.constraint(equalTo: profileObjectView.leadingAnchor, constant: 50).isActive = true
+        profileNameButton.trailingAnchor.constraint(equalTo: profileObjectView.trailingAnchor, constant: -50).isActive = true
+        profileNameButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }

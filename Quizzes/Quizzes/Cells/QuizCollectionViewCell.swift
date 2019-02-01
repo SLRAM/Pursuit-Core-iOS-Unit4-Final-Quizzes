@@ -7,11 +7,11 @@
 //
 
 import UIKit
-//protocol QuizCollectionViewCellDelegate: AnyObject {
-//    func actionSheet(tag: Int)
-//}
+protocol QuizCollectionViewCellDelegate: AnyObject {
+    func actionSheet(tag: Int)
+}
 class QuizCollectionViewCell: UICollectionViewCell {
-//    weak var delegate: QuizCollectionViewCellDelegate?
+    weak var delegate: QuizCollectionViewCellDelegate?
  
     public lazy var cellLabel: UILabel = {
         let label = UILabel()
@@ -24,13 +24,13 @@ class QuizCollectionViewCell: UICollectionViewCell {
     lazy var cellButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "moreFilled"), for: .normal)
-//        button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
         return button
     }()
-//    @objc func cellButtonPressed(_ sender: UIButton) {
-////        delegate?.actionSheet(tag: sender.tag)
-//        print("quiz ... button pressed")
-//    }
+    @objc func cellButtonPressed(_ sender: UIButton) {
+//        delegate?.actionSheet(tag: sender.tag)
+        print("quiz ... button pressed")
+    }
     
     
 //    override func prepareForReuse() {
