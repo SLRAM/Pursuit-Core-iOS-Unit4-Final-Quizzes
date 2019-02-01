@@ -1,5 +1,5 @@
 //
-//  QuizCollectionViewCell.swift
+//  SearchCollectionViewCell.swift
 //  Quizzes
 //
 //  Created by Stephanie Ramirez on 2/1/19.
@@ -7,35 +7,34 @@
 //
 
 import UIKit
-//protocol QuizCollectionViewCellDelegate: AnyObject {
-//    func actionSheet(tag: Int)
+//protocol SearchCollectionViewCellDelegate: AnyObject {
+//    //needs an alert action
 //}
-class QuizCollectionViewCell: UICollectionViewCell {
-//    weak var delegate: QuizCollectionViewCellDelegate?
- 
+class SearchCollectionViewCell: UICollectionViewCell {
+    //    weak var delegate: QuizCollectionViewCellDelegate?
+    
     public lazy var cellLabel: UILabel = {
         let label = UILabel()
         label.text = "Label"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 0
         return label
     }()
     lazy var cellButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "moreFilled"), for: .normal)
-//        button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
+        button.setImage(UIImage(named: "addIconFilled"), for: .normal)
+        //        button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
         return button
     }()
-//    @objc func cellButtonPressed(_ sender: UIButton) {
-////        delegate?.actionSheet(tag: sender.tag)
-//        print("quiz ... button pressed")
-//    }
+    //    @objc func cellButtonPressed(_ sender: UIButton) {
+    //        print("Search + button pressed")
+    //    }
     
     
-//    override func prepareForReuse() {
-//        self.cellImage.image = nil
-//    }
+    //    override func prepareForReuse() {
+    //        self.cellImage.image = nil
+    //    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,11 +49,9 @@ class QuizCollectionViewCell: UICollectionViewCell {
     
     private func commonInit() {
         setupCells()
-        layer.borderWidth = 2.0
-        layer.borderColor = UIColor.black.cgColor
     }
 }
-extension QuizCollectionViewCell {
+extension SearchCollectionViewCell {
     func setupCells() {
         setupCellButton()
         setupCellLabel()
@@ -68,8 +65,9 @@ extension QuizCollectionViewCell {
     func setupCellLabel() {
         addSubview(cellLabel)
         cellLabel.translatesAutoresizingMaskIntoConstraints = false
-        cellLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         cellLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        cellLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
+        cellLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5)
     }
-
+    
 }

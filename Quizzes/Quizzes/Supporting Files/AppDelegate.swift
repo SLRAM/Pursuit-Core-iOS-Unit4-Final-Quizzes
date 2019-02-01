@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     
     let quizVC = QuizViewController()
-    quizVC.tabBarItem = UITabBarItem(title: "Quizes", image: UIImage(named: "quiz-icon"), tag: 0)
+    quizVC.tabBarItem = UITabBarItem(title: "Quizes", image: UIImage(named: "quizIcon"), tag: 0)
     let quizNav = UINavigationController.init(rootViewController: quizVC)
     
     let searchVC = SearchViewController()
@@ -27,10 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     let createVC = CreateViewController()
-    createVC.tabBarItem = UITabBarItem(title: "Create", image: UIImage(named: "create-icon"), tag: 2)
+    createVC.tabBarItem = UITabBarItem(title: "Create", image: UIImage(named: "createIcon"), tag: 2)
 
     let profileVC = ProfileViewController()
-    profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile-unfilled"), tag: 3)
+    profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profileUnfilled"), tag: 3)
     
     
     //this is for protocol to work so that the settings view controller can change the best viewcontroller without persistence. includes protocol code on settings and extension on best
