@@ -18,39 +18,64 @@ class ProfileViewController: UIViewController {
         view.addSubview(profileView)
         profileView.delegate = self
         setupImagePickerViewController()
-        if profileView.profileNameButton.currentTitle == "@username" {
-            print("No user!")
+        checkDefaultName()
         
-                let alertController = UIAlertController(title: "Please enter your username", message: "no spaces or special characters", preferredStyle: .alert)
-                alertController.addTextField { (textfield) in
-                    textfield.placeholder = "@username"
-                    textfield.textAlignment = .center
-                }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                let submitAction = UIAlertAction(title: "submit", style: .default) { alert in
-                    self.profileView.profileNameButton.setTitle(alertController.textFields?.first?.text, for: .normal)
-                    
-                    //3. add new default search to user defaults
-                    //user defaults is a key/value pair structure similar to a dictionary
-                    //keys refer to the saved value
-                    //STORE / SAVE / PERSIST TO USER DEFAULTS
-                    //can only save property list objects, ex. Data, String, Bool, Int
-                    //            UserDefaults.standard.set(defaultSearch, forKey: UserDefaultsKeys.defaultSearchKey)
-                    
-                    //TODO: query to Ticketmaster API for event searches
-                    
-                    
-                }
-                
-                
-                alertController.addAction(submitAction)
-                alertController.addAction(cancelAction)
-                present(alertController, animated: true)
-                
-            
+
+    }
+    private func checkDefaultName() {
+        if profileView.profileNameButton.currentTitle == "@username" {
+            profileView.profileImageButton.isEnabled = false
+            userRegister()
         }
 
     }
+    private func userRegister() {
+        //guard agsinst @username and special characters
+        let alertController = UIAlertController(title: "Please enter your username", message: "no spaces or special characters", preferredStyle: .alert)
+        alertController.addTextField { (textfield) in
+            textfield.placeholder = "@username"
+            textfield.textAlignment = .center
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let submitAction = UIAlertAction(title: "submit", style: .default) { alert in
+            let username = "@\(alertController.textFields?.first?.text ?? "@username")"
+            self.profileView.profileNameButton.setTitle(username, for: .normal)
+            self.setUserLoginMessage()
+            self.profileView.profileImageButton.isEnabled = true
+
+            //3. add new default search to user defaults
+            //user defaults is a key/value pair structure similar to a dictionary
+            //keys refer to the saved value
+            //STORE / SAVE / PERSIST TO USER DEFAULTS
+            //can only save property list objects, ex. Data, String, Bool, Int
+            //            UserDefaults.standard.set(defaultSearch, forKey: UserDefaultsKeys.defaultSearchKey)
+            
+            //TODO: query to Ticketmaster API for event searches
+            
+            
+        }
+        alertController.addAction(submitAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+
+        
+    }
+    private func setUserLoginMessage() {
+        //if user is new or in memory
+        //new user:
+        let alert = UIAlertController(title: "Thank you for logging in!", message: "", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+        //returning user/saved in memory
+//        let alert = UIAlertController(title: "Welcome back!", message: "", preferredStyle: UIAlertController.Style.alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
     private func showImagePickerViewController() {
         present(imagePickerViewController, animated: true, completion: nil)
     }
@@ -65,14 +90,11 @@ class ProfileViewController: UIViewController {
 
 }
 extension ProfileViewController: ProfileViewDelegate {
-    func profileImage() {
+    func profileImagePressed() {
         let optionMenu = UIAlertController(title: nil, message: "Options:", preferredStyle: .actionSheet)
-
         let libraryAction = UIAlertAction(title: "Go to library", style: .default, handler: { (action) -> Void in
             self.imagePickerViewController.sourceType = .photoLibrary
             self.showImagePickerViewController()
-            
-            
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(libraryAction)
@@ -80,34 +102,21 @@ extension ProfileViewController: ProfileViewDelegate {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
-    func profileName() {
-        let alertController = UIAlertController(title: "Please enter your username", message: "no spaces or special characters", preferredStyle: .alert)
-        alertController.addTextField { (textfield) in
-            textfield.placeholder = "@username"
-            textfield.textAlignment = .center
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let submitAction = UIAlertAction(title: "submit", style: .default) { alert in
-            
-            
-            //3. add new default search to user defaults
-            //user defaults is a key/value pair structure similar to a dictionary
-            //keys refer to the saved value
-            //STORE / SAVE / PERSIST TO USER DEFAULTS
-            //can only save property list objects, ex. Data, String, Bool, Int
-//            UserDefaults.standard.set(defaultSearch, forKey: UserDefaultsKeys.defaultSearchKey)
-            
-            //TODO: query to Ticketmaster API for event searches
-            
-            
-        }
-        
-        
-        alertController.addAction(submitAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+    
+    
+    
+    
+    func profileNamePressed() {
+        userRegister()
+        setUserLoginMessage()
         
     }
+    
+    
+    
+    
+    
+    
     
     
 }

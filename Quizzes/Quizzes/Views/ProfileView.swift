@@ -9,8 +9,8 @@
 import UIKit
 
 protocol ProfileViewDelegate: AnyObject {
-    func profileImage()
-    func profileName()
+    func profileImagePressed()
+    func profileNamePressed()
 }
 
 class ProfileView: UIView {
@@ -28,6 +28,7 @@ class ProfileView: UIView {
     }()
     lazy var profileImageButton: UIButton = {
         let button = UIButton()
+        //Currently does not adjust!!!!!!
         button.layer.cornerRadius = button.bounds.width/2.0 + 65
         button.clipsToBounds = true
         button.setImage(UIImage(named: "placeholderImage"), for: .normal)
@@ -36,7 +37,7 @@ class ProfileView: UIView {
     }()
     @objc func profileImagePressed(_ sender: UIButton) {
         print("Profile image pressed")
-        delegate?.profileImage()
+        delegate?.profileImagePressed()
         //        delegate?.actionSheet(tag: sender.tag)
     }
     
@@ -50,7 +51,7 @@ class ProfileView: UIView {
     }()
     @objc func profileNamePressed(_ sender: UIButton) {
         print("Profile name pressed")
-        delegate?.profileName()
+        delegate?.profileNamePressed()
     }
     
     override init(frame: CGRect) {
