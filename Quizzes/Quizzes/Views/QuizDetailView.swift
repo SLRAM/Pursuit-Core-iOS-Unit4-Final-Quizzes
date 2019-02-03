@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol QuizDetailViewDelegate: AnyObject {
+    func animation()
+}
+
 class QuizDetailView: UIView {
-    
+    weak var delegate: QuizDetailViewDelegate?
+
     
     public lazy var myQuizCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,10 +27,19 @@ class QuizDetailView: UIView {
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         
         let cv = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.register(QuizCollectionViewCell.self, forCellWithReuseIdentifier: "QuizCollectionViewCell")
+        cv.register(QuizDetailCollectionViewCell.self, forCellWithReuseIdentifier: "QuizDetailCollectionViewCell")
         cv.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return cv
     }()
+    public lazy var myQuizCollectionButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        return button
+    }()
+    @objc func buttonPressed() {
+        delegate?.animation()
+        print("quiz clicked!")
+    }
     
     
     
@@ -41,11 +55,15 @@ class QuizDetailView: UIView {
     }
     private func commonInit() {
         backgroundColor = .white
-        setupCollectionView()
+        setupCollectionViewCell()
     }
     
 }
 extension QuizDetailView {
+    func setupCollectionViewCell() {
+        setupCollectionView()
+        setupButton()
+    }
     func setupCollectionView() {
         addSubview(myQuizCollectionView)
         myQuizCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,4 +72,13 @@ extension QuizDetailView {
         myQuizCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         myQuizCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
+    func setupButton() {
+        addSubview(myQuizCollectionButton)
+        myQuizCollectionButton.translatesAutoresizingMaskIntoConstraints = false
+        myQuizCollectionButton.topAnchor.constraint(equalTo: myQuizCollectionView.topAnchor).isActive = true
+        myQuizCollectionButton.bottomAnchor.constraint(equalTo: myQuizCollectionView.bottomAnchor).isActive = true
+        myQuizCollectionButton.leadingAnchor.constraint(equalTo: myQuizCollectionView.leadingAnchor).isActive = true
+        myQuizCollectionButton.trailingAnchor.constraint(equalTo: myQuizCollectionView.trailingAnchor).isActive = true
+    }
+    
 }

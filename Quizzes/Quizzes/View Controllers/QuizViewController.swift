@@ -65,15 +65,13 @@ extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedCell = collectionView.cellForItem(at: indexPath) as? QuizCollectionViewCell else {return}
+        guard let selectedCell = quizView.myQuizCollectionView.cellForItem(at: indexPath) as? QuizCollectionViewCell else {return}
         let quiz = QuizModel.getQuizzes()[indexPath.row]
         let detailVC = QuizDetailViewController()
-        detailVC.detailView.detailImage.image = selectedCell.cellImage.image
-        detailVC.detailView.detailTextView.text = selectedCell.cellTextView.text
-        detailVC.detailView.detailFavoritesImage.image = selectedCell.cellImage.image
-        detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
-        detailVC.selectedTitle = book.bookDetails.first?.title
-        detailVC.amazonLinkString = book.amazonProductUrl
+
+//        detailVC.quizDetailView
+//        detailVC.detailView.detailImage.image = selectedCell.cellImage.image
+
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
