@@ -33,6 +33,8 @@
 		97F10BAD2206763A004E00C1 /* QuizDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAC2206763A004E00C1 /* QuizDetailCollectionViewCell.swift */; };
 		97F10BAF2206CB4F004E00C1 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAE2206CB4F004E00C1 /* UserDefaultKeys.swift */; };
 		97F10BB12206E814004E00C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BB02206E814004E00C1 /* User.swift */; };
+		97F10BB32206FA08004E00C1 /* SearchAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BB22206FA08004E00C1 /* SearchAPIClient.swift */; };
+		97F10BB52206FA34004E00C1 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BB42206FA34004E00C1 /* SearchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		97F10BAC2206763A004E00C1 /* QuizDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		97F10BAE2206CB4F004E00C1 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 		97F10BB02206E814004E00C1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		97F10BB22206FA08004E00C1 /* SearchAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPIClient.swift; sourceTree = "<group>"; };
+		97F10BB42206FA34004E00C1 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 			children = (
 				577118D422037A9F00B9DD0B /* AppError.swift */,
 				577118D622037ABA00B9DD0B /* NetworkHelper.swift */,
+				97F10BB22206FA08004E00C1 /* SearchAPIClient.swift */,
 			);
 			path = "Network Services";
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				97F10B9F220646C1004E00C1 /* Quiz.swift */,
 				97F10BB02206E814004E00C1 /* User.swift */,
 				97F10BA422065287004E00C1 /* QuizModel.swift */,
+				97F10BB42206FA34004E00C1 /* SearchModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 				97F10BAD2206763A004E00C1 /* QuizDetailCollectionViewCell.swift in Sources */,
 				97F10B8C2204ADE8004E00C1 /* QuizView.swift in Sources */,
 				97F10B8F2204B063004E00C1 /* QuizCollectionViewCell.swift in Sources */,
+				97F10BB32206FA08004E00C1 /* SearchAPIClient.swift in Sources */,
 				97F10BA522065287004E00C1 /* QuizModel.swift in Sources */,
 				97F10B952204C392004E00C1 /* CreateView.swift in Sources */,
 				97F10B8A2204A8FE004E00C1 /* ProfileViewController.swift in Sources */,
@@ -273,6 +280,7 @@
 				97F10B9D220632A5004E00C1 /* EmptyQuizView.swift in Sources */,
 				97F10BA0220646C1004E00C1 /* Quiz.swift in Sources */,
 				97F10B862204A8D9004E00C1 /* SearchViewController.swift in Sources */,
+				97F10BB52206FA34004E00C1 /* SearchModel.swift in Sources */,
 				97F10BAF2206CB4F004E00C1 /* UserDefaultKeys.swift in Sources */,
 				97F10B972204C39E004E00C1 /* ProfileView.swift in Sources */,
 				577118C12203796A00B9DD0B /* AppDelegate.swift in Sources */,

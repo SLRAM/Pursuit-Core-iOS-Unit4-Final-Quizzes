@@ -18,6 +18,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
         label.text = "Label"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
     }()
@@ -68,7 +69,7 @@ extension SearchCollectionViewCell {
         cellLabel.translatesAutoresizingMaskIntoConstraints = false
         cellLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
         cellLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
-        cellLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5)
+        cellLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
     }
     
 }
