@@ -18,6 +18,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         label.text = "Label"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
     }()
@@ -28,6 +29,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         return button
     }()
     @objc func cellButtonPressed(_ sender: UIButton) {
+        print(sender.tag)
         delegate?.actionSheet(tag: sender.tag)
         print("quiz ... button pressed")
     }
@@ -70,6 +72,9 @@ extension QuizCollectionViewCell {
         cellLabel.translatesAutoresizingMaskIntoConstraints = false
         cellLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         cellLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        cellLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
+        cellLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
+
     }
 
 }

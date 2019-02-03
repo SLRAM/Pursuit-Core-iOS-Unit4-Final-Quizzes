@@ -61,6 +61,8 @@ extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCollectionViewCell", for: indexPath) as? QuizCollectionViewCell else {return UICollectionViewCell()}
         let quiz = QuizModel.getQuizzes()[indexPath.row]
         cell.cellLabel.text = quiz.quizTitle
+        cell.cellButton.tag = indexPath.row
+        print("cell tag: \(cell.cellButton.tag)")
         cell.delegate = self
         return cell
     }
@@ -89,6 +91,7 @@ extension QuizViewController: QuizCollectionViewCellDelegate {
     func actionSheet(tag: Int) {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let  deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+            print("Tag: \(tag)")
             QuizModel.deleteBook(index: tag)
             self.quizzes = QuizModel.getQuizzes()
             self.setupQuizView()

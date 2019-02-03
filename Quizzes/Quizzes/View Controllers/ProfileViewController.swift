@@ -40,6 +40,7 @@ class ProfileViewController: UIViewController {
         let submitAction = UIAlertAction(title: "submit", style: .default) { alert in
             let username = "@\(alertController.textFields?.first?.text ?? "@username")"
             self.profileView.profileNameButton.setTitle(username, for: .normal)
+            UserDefaults.standard.set(username, forKey: UserDefaultsKeys.usernameKey)
             self.setUserLoginMessage()
             self.profileView.profileImageButton.isEnabled = true
 

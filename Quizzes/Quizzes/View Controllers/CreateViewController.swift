@@ -33,7 +33,8 @@ class CreateViewController: UIViewController {
             let firstFact = createView.firstQuizTextView.text,
             let secondFact = createView.secondQuizTextView.text else {return nil}
         let facts = [firstFact,secondFact]
-        let username = "@username"
+        //********
+        let username = "@user"
 
         let date = Date()
         let formatter = DateFormatter()
@@ -98,7 +99,8 @@ extension CreateViewController: UITextViewDelegate {
 }
 extension CreateViewController: CreateViewDelegate {
     func createPressed() {
-        if QuizModel.quizAlreadyCreated(newTitle: createView.titleTextView.text) {
+        //********
+        if QuizModel.quizAlreadyCreated(newTitle: createView.titleTextView.text, username: "@username") {
             setQuizMessage(bool: false)
             //alert that says quiz already exists
         } else {

@@ -31,6 +31,7 @@
 		97F10BA922066DE6004E00C1 /* QuizDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BA822066DE6004E00C1 /* QuizDetailViewController.swift */; };
 		97F10BAB220673A1004E00C1 /* QuizDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAA220673A1004E00C1 /* QuizDetailView.swift */; };
 		97F10BAD2206763A004E00C1 /* QuizDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAC2206763A004E00C1 /* QuizDetailCollectionViewCell.swift */; };
+		97F10BAF2206CB4F004E00C1 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAE2206CB4F004E00C1 /* UserDefaultKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		97F10BA822066DE6004E00C1 /* QuizDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailViewController.swift; sourceTree = "<group>"; };
 		97F10BAA220673A1004E00C1 /* QuizDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailView.swift; sourceTree = "<group>"; };
 		97F10BAC2206763A004E00C1 /* QuizDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		97F10BAE2206CB4F004E00C1 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +94,6 @@
 		577118BF2203796A00B9DD0B /* Quizzes */ = {
 			isa = PBXGroup;
 			children = (
-				97F10BA122064B81004E00C1 /* Services */,
 				97F10B9E220646A2004E00C1 /* Models */,
 				97F10B8D2204B036004E00C1 /* Cells */,
 				97F10B812204A893004E00C1 /* Views */,
@@ -137,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				577118DC22037B8E00B9DD0B /* Date+Extensions.swift */,
+				97F10BAE2206CB4F004E00C1 /* UserDefaultKeys.swift */,
 				577118DE22037BAA00B9DD0B /* String+DateExtensions.swift */,
 			);
 			path = "Date Utilities";
@@ -184,13 +186,6 @@
 				97F10BA422065287004E00C1 /* QuizModel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		97F10BA122064B81004E00C1 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +270,7 @@
 				97F10B9D220632A5004E00C1 /* EmptyQuizView.swift in Sources */,
 				97F10BA0220646C1004E00C1 /* Quiz.swift in Sources */,
 				97F10B862204A8D9004E00C1 /* SearchViewController.swift in Sources */,
+				97F10BAF2206CB4F004E00C1 /* UserDefaultKeys.swift in Sources */,
 				97F10B972204C39E004E00C1 /* ProfileView.swift in Sources */,
 				577118C12203796A00B9DD0B /* AppDelegate.swift in Sources */,
 				97F10B912204B9FA004E00C1 /* SearchView.swift in Sources */,

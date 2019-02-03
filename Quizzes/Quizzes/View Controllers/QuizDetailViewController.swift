@@ -21,7 +21,6 @@ class QuizDetailViewController: UIViewController {
         print(facts![0])
         quizDetailView.myQuizCollectionView.dataSource = self
         quizDetailView.myQuizCollectionView.delegate = self
-//        quizDetailView.delegate = self
     }
 }
 extension QuizDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -51,23 +50,4 @@ extension QuizDetailViewController: UICollectionViewDataSource, UICollectionView
     
     
 }
-//extension QuizDetailViewController: QuizDetailViewDelegate {
-//    func animation() {
-//        print("quiz clicked!")
-////        UIView.transition(with: quizDetailView.myQuizCollectionView.cellForItem(at: ), duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
-////        })
-////        if cat.image == UIImage(named: "cat") {
-////            UIView.transition(with: cat, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
-////                self.cat.image = UIImage(named: "dog")
-////                self.label.text = "Dog"
-////            })
-////        } else {
-////            UIView.transition(with: cat, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
-////                self.cat.image = UIImage(named: "cat")
-////                self.label.text = "Cat"
-////            })
-////        }
-//    }
-//
-//
-//}
+

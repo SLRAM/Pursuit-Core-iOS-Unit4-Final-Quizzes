@@ -15,6 +15,7 @@ class QuizDetailCollectionViewCell: UICollectionViewCell {
         label.text = "Label"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         return label
     }()
@@ -47,8 +48,6 @@ class QuizDetailCollectionViewCell: UICollectionViewCell {
     
     private func commonInit() {
         setupCells()
-        layer.borderWidth = 2.0
-        layer.borderColor = UIColor.black.cgColor
     }
 }
 extension QuizDetailCollectionViewCell {
@@ -61,6 +60,8 @@ extension QuizDetailCollectionViewCell {
         cellLabel.translatesAutoresizingMaskIntoConstraints = false
         cellLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         cellLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        cellLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
+        cellLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
     }
     
 }

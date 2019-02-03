@@ -11,18 +11,21 @@ import Foundation
 final class QuizModel {
     private static let filename = "SavedQuizList.plist"
     private static var quizzes = [Quiz]()
+    private static var filtered = [Quiz]()
+
     private init() {}
     static func appendQuiz(quiz: Quiz) {
         quizzes.append(quiz)
+        quizzes = quizzes.sorted {$0.createdAt > $1.createdAt}
         saveQuiz()
     }
-    static func quizAlreadyCreated(newTitle: String)-> Bool {
+    static func quizAlreadyCreated(newTitle: String, username: String)-> Bool {
         var quizTitle = false
         if quizzes.isEmpty {
             return quizTitle
         } else {
             for num in 0...quizzes.count - 1 {
-                if quizzes[num].quizTitle == newTitle{
+                if quizzes[num].quizTitle == newTitle && quizzes[num].username == username{
                     quizTitle = true
                 }
             }
@@ -41,9 +44,19 @@ final class QuizModel {
         }
     }
     static func deleteBook(index: Int) {
-        quizzes.remove(at: index)
+        var number = Int()
+        
+        for num in 0...quizzes.count-1 {
+            if filtered[index].quizTitle == quizzes[num].quizTitle && filtered[index].username == quizzes[num].username {
+                number = num
+                break
+            }
+        }
+        filtered.remove(at: index)
+        quizzes.remove(at: number)
         saveQuiz()
     }
+
     static func getQuizzes() -> [Quiz] {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
 
@@ -51,6 +64,7 @@ final class QuizModel {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
                     quizzes = try PropertyListDecoder().decode([Quiz].self, from: data)
+//                    print("first print of quizzes: \(quizzes)")
                 } catch {
                     print("Property list decoding error: \(error)")
                 }
@@ -60,10 +74,15 @@ final class QuizModel {
         } else {
             print("\(filename) does not exist")
         }
-        //filter out by username then sort
-        var filteredQuizzes = quizzes.filter { $0.username == "@username" }
-        filteredQuizzes = filteredQuizzes.sorted {$0.createdAt > $1.createdAt}
-        return filteredQuizzes
+
+        quizzes = quizzes.sorted {$0.createdAt > $1.createdAt}
+//        print("second print of quizzes: \(quizzes)")
+        filtered = quizzes
+        filtered = filtered.filter { $0.username == "@username" }
+//        print("third print of quizzes: \(quizzes)")
+//        print("fourth print of filtered: \(filtered)")
+
+        return filtered
     }
 }
 
