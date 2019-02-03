@@ -7,8 +7,23 @@
 //
 
 import UIKit
+protocol CreateViewDelegate: AnyObject {
+    func createPressed()
+}
 
 class CreateView: UIView {
+    
+    weak var delegate: CreateViewDelegate?
+
+    
+    public lazy var createButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Favorite", style: UIBarButtonItem.Style.plain, target: self, action: #selector(createPressed))
+        return button
+    }()
+    @objc func createPressed() {
+        delegate?.createPressed()
+        print("create pressed")
+    }
     
     lazy var titleTextView: UITextView = {
         let textView = UITextView()
@@ -63,6 +78,7 @@ extension CreateView {
         setupTitleTextField()
         setupFirstQuizTextField()
         setupSecondTextField()
+//        addSubview(createButton)
     }
     func setupTitleTextField() {
         addSubview(titleTextView)

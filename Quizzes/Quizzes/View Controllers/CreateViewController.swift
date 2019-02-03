@@ -11,6 +11,8 @@ import UIKit
 class CreateViewController: UIViewController {
 
     private let createView = CreateView()
+    var quiz: Quiz?
+
     
     let titlePlaceholder = "Enter the quiz title"
     let firstPlaceholder = "Enter first quiz fact"
@@ -19,28 +21,42 @@ class CreateViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(createView)
 //        var createViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CreateViewController") as CreateViewController
-
         createView.titleTextView.delegate = self
         createView.firstQuizTextView.delegate = self
         createView.secondQuizTextView.delegate = self
-//        createView.titleTextField.delegate = self
-//        createView.firstQuizTextField.delegate = self
-//        createView.secondQuizTextField.delegate = self
+        createView.delegate = self
+        navigationItem.rightBarButtonItem = createView.createButton
+    }
+
+    private func saveQuiz()-> Quiz? {
+        guard let quizTitle = createView.titleTextView.text,
+            let firstFact = createView.firstQuizTextView.text,
+            let secondFact = createView.secondQuizTextView.text else {return nil}
+        let facts = [firstFact,secondFact]
+        let username = "@username"
+
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.long
+        formatter.timeStyle = .medium
+        let timestamp = formatter.string(from: date)
+
+        let quiz = Quiz.init(facts: facts, quizTitle: quizTitle, username: username, createdAt: timestamp)
         
-        // Do any additional setup after loading the view.
+        return quiz
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setQuizMessage(bool: Bool) {
+        if bool {
+            let alert = UIAlertController(title: "Your Quiz has been saved!", message: "", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Sorry that quiz exists already!", message: "", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
-    */
-
 }
 extension CreateViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -79,4 +95,26 @@ extension CreateViewController: UITextViewDelegate {
             print("error leaving create text views")
         }
     }
+}
+extension CreateViewController: CreateViewDelegate {
+    func createPressed() {
+        if QuizModel.quizAlreadyCreated(newTitle: createView.titleTextView.text) {
+            setQuizMessage(bool: false)
+            //alert that says quiz already exists
+        } else {
+            guard let quiz = saveQuiz() else {
+                print("Failed to save quiz")
+                return
+            }
+            QuizModel.appendQuiz(quiz: quiz)
+            setQuizMessage(bool: true)
+            createView.titleTextView.text = titlePlaceholder
+            createView.firstQuizTextView.text = firstPlaceholder
+            createView.secondQuizTextView.text = secondPlaceholder
+            createView.resignFirstResponder()
+            //reset views
+        }
+    }
+    
+    
 }
