@@ -10,8 +10,11 @@ import Foundation
 
 final class QuizModel {
     private static let filename = "SavedQuizList.plist"
+    private static let userFilename = "SavedUserList.plist"
+
     private static var quizzes = [Quiz]()
     private static var filtered = [Quiz]()
+    private static var users = [User]()
 
     private init() {}
     static func appendQuiz(quiz: Quiz) {
@@ -32,6 +35,7 @@ final class QuizModel {
         }
         return quizTitle
     }
+    
 
     static func saveQuiz() {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
@@ -64,7 +68,6 @@ final class QuizModel {
             if let data = FileManager.default.contents(atPath: path) {
                 do {
                     quizzes = try PropertyListDecoder().decode([Quiz].self, from: data)
-//                    print("first print of quizzes: \(quizzes)")
                 } catch {
                     print("Property list decoding error: \(error)")
                 }
@@ -74,15 +77,70 @@ final class QuizModel {
         } else {
             print("\(filename) does not exist")
         }
-
         quizzes = quizzes.sorted {$0.createdAt > $1.createdAt}
-//        print("second print of quizzes: \(quizzes)")
         filtered = quizzes
         filtered = filtered.filter { $0.username == "@username" }
-//        print("third print of quizzes: \(quizzes)")
-//        print("fourth print of filtered: \(filtered)")
 
         return filtered
+    }
+    
+    
+    
+    static func usernameAlreadyCreated(username: String)-> Bool {
+        var profileUsername = false
+        if users.isEmpty {
+            return profileUsername
+        } else {
+            for num in 0...users.count - 1 {
+                if users[num].username == username{
+                    profileUsername = true
+                }
+            }
+        }
+        return profileUsername
+    }
+    
+    static func appendUser(user: User) {
+        users.append(user)
+        saveUser()
+    }
+    static func editUser(username: String, user: User) {
+        for num in 0...users.count - 1 {
+            if users[num].username == username {
+                users[num] = user
+            }
+        }
+        saveUser()
+    }
+    
+    static func saveUser() {
+        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: userFilename)
+        
+        do {
+            let data = try PropertyListEncoder().encode(users)
+            try data.write(to: path, options: Data.WritingOptions.atomic)
+        } catch {
+            print("property list encoder: \(error)")
+        }
+    }
+    static func getUser() -> [User] {
+        let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: userFilename).path
+        
+        if FileManager.default.fileExists(atPath: path) {
+            if let data = FileManager.default.contents(atPath: path) {
+                do {
+                    users = try PropertyListDecoder().decode([User].self, from: data)
+                } catch {
+                    print("Property list decoding error: \(error)")
+                }
+            } else {
+                print("getPhotoJournal - data is nil")
+            }
+        } else {
+            print("\(filename) does not exist")
+        }
+        
+        return users
     }
 }
 

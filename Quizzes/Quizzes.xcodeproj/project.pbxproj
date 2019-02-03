@@ -32,6 +32,7 @@
 		97F10BAB220673A1004E00C1 /* QuizDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAA220673A1004E00C1 /* QuizDetailView.swift */; };
 		97F10BAD2206763A004E00C1 /* QuizDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAC2206763A004E00C1 /* QuizDetailCollectionViewCell.swift */; };
 		97F10BAF2206CB4F004E00C1 /* UserDefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BAE2206CB4F004E00C1 /* UserDefaultKeys.swift */; };
+		97F10BB12206E814004E00C1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F10BB02206E814004E00C1 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		97F10BAA220673A1004E00C1 /* QuizDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailView.swift; sourceTree = "<group>"; };
 		97F10BAC2206763A004E00C1 /* QuizDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		97F10BAE2206CB4F004E00C1 /* UserDefaultKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKeys.swift; sourceTree = "<group>"; };
+		97F10BB02206E814004E00C1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				97F10B9F220646C1004E00C1 /* Quiz.swift */,
+				97F10BB02206E814004E00C1 /* User.swift */,
 				97F10BA422065287004E00C1 /* QuizModel.swift */,
 			);
 			path = Models;
@@ -278,6 +281,7 @@
 				577118DA22037B5B00B9DD0B /* DataPersistenceManager.swift in Sources */,
 				97F10BAB220673A1004E00C1 /* QuizDetailView.swift in Sources */,
 				97F10BA922066DE6004E00C1 /* QuizDetailViewController.swift in Sources */,
+				97F10BB12206E814004E00C1 /* User.swift in Sources */,
 				577118DF22037BAA00B9DD0B /* String+DateExtensions.swift in Sources */,
 				97F10B932204BAA6004E00C1 /* SearchCollectionViewCell.swift in Sources */,
 				577118DD22037B8E00B9DD0B /* Date+Extensions.swift in Sources */,
