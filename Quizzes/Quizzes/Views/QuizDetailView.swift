@@ -38,7 +38,6 @@ class QuizDetailView: UIView {
     }()
     @objc func buttonPressed() {
         delegate?.animation()
-        print("quiz clicked!")
     }
     
     
@@ -62,7 +61,7 @@ class QuizDetailView: UIView {
 extension QuizDetailView {
     func setupCollectionViewCell() {
         setupCollectionView()
-        setupButton()
+//        setupButton()
     }
     func setupCollectionView() {
         addSubview(myQuizCollectionView)

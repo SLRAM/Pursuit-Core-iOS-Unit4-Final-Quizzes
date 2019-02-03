@@ -11,44 +11,63 @@ import UIKit
 class QuizDetailViewController: UIViewController {
 
     let quizDetailView = QuizDetailView()
+    var quizTitle: String?
+    var facts: [String]?
+    var quiz: Quiz?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(quizDetailView)
+        print(facts![0])
         quizDetailView.myQuizCollectionView.dataSource = self
         quizDetailView.myQuizCollectionView.delegate = self
-        quizDetailView.delegate = self
-
+//        quizDetailView.delegate = self
     }
 }
 extension QuizDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        guard let quizFacts = facts else {return 0}
+        return quizFacts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizDetailCollectionViewCell", for: indexPath) as? QuizDetailCollectionViewCell else {return UICollectionViewCell()}
-//        cell.cellLabel.text = "Hello"
+        cell.cellLabel.text = quizTitle
         return cell
     }
-    
-    
-}
-extension QuizDetailViewController: QuizDetailViewDelegate {
-    func animation() {
-        
-//        if cat.image == UIImage(named: "cat") {
-//            UIView.transition(with: cat, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
-//                self.cat.image = UIImage(named: "dog")
-//                self.label.text = "Dog"
-//            })
-//        } else {
-//            UIView.transition(with: cat, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
-//                self.cat.image = UIImage(named: "cat")
-//                self.label.text = "Cat"
-//            })
-//        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? QuizDetailCollectionViewCell
+        if cell?.cellLabel.text == quizTitle {
+            UIView.transition(with: quizDetailView.myQuizCollectionView.cellForItem(at: indexPath)!, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
+                cell?.cellLabel.text = self.facts![indexPath.row]
+            })
+        } else {
+            UIView.transition(with: quizDetailView.myQuizCollectionView.cellForItem(at: indexPath)!, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
+                cell?.cellLabel.text = self.quizTitle
+            })
+        }
+
     }
     
     
 }
+//extension QuizDetailViewController: QuizDetailViewDelegate {
+//    func animation() {
+//        print("quiz clicked!")
+////        UIView.transition(with: quizDetailView.myQuizCollectionView.cellForItem(at: ), duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
+////        })
+////        if cat.image == UIImage(named: "cat") {
+////            UIView.transition(with: cat, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
+////                self.cat.image = UIImage(named: "dog")
+////                self.label.text = "Dog"
+////            })
+////        } else {
+////            UIView.transition(with: cat, duration: 1.0, options: [.curveEaseInOut, .transitionFlipFromRight], animations: {
+////                self.cat.image = UIImage(named: "cat")
+////                self.label.text = "Cat"
+////            })
+////        }
+//    }
+//
+//
+//}

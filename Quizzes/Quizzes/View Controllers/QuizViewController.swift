@@ -68,9 +68,17 @@ extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let selectedCell = quizView.myQuizCollectionView.cellForItem(at: indexPath) as? QuizCollectionViewCell else {return}
         let quiz = QuizModel.getQuizzes()[indexPath.row]
         let detailVC = QuizDetailViewController()
+        detailVC.quiz = quiz
+//        detailVC.quizTitle = quiz.quizTitle
+        detailVC.quizTitle = selectedCell.cellLabel.text
+        detailVC.facts = quiz.facts
+        //selected cell is info I have available on the cell
+        //quiz is info available from the quiz model
+        //detailVC is info i want to set on the detail page
+        
+//        detailVC.detailView.detailFavoritesImage.image = selectedCell.cellImage.image
+//        detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
 
-//        detailVC.quizDetailView
-//        detailVC.detailView.detailImage.image = selectedCell.cellImage.image
 
         navigationController?.pushViewController(detailVC, animated: true)
     }
