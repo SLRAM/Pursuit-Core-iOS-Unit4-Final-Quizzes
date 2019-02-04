@@ -23,12 +23,11 @@ class ProfileView: UIView {
         label.textColor = .gray
         label.text = "Edit Profile"
         
-        
         return label
     }()
     lazy var profileImageButton: UIButton = {
         let button = UIButton()
-        //Currently does not adjust!!!!!!
+        //Currently does not adjust!!!!!! Circle on iPhone XR
         button.layer.cornerRadius = button.bounds.width/2.0 + 65
         button.clipsToBounds = true
         button.setImage(UIImage(named: "placeholderImage"), for: .normal)
@@ -54,7 +53,6 @@ class ProfileView: UIView {
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -64,7 +62,6 @@ class ProfileView: UIView {
     private func commonInit() {
         backgroundColor = #colorLiteral(red: 0.928835094, green: 0.9233136773, blue: 0.9330795407, alpha: 1)
         setupCollectionView()
-        
     }
     
 }

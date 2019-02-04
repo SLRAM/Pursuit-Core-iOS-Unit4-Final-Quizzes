@@ -10,7 +10,6 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    
     private var searchInfo = [SearchModel](){
         didSet {
             DispatchQueue.main.async {
@@ -26,7 +25,6 @@ class SearchViewController: UIViewController {
         setupCells()
         searchView.mySearchCollectionView.dataSource = self
         searchView.mySearchCollectionView.delegate = self
-        
     }
     
     private func setupCells(){
@@ -44,9 +42,7 @@ class SearchViewController: UIViewController {
         let firstFact = search.facts[0]
         let secondFact = search.facts[1]
         let facts = [firstFact,secondFact]
-        //********
         guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return nil}
-        
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
@@ -68,9 +64,6 @@ class SearchViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-
-
-
 }
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -83,7 +76,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         searchCollectionViewCell.cellLabel.text = quiz.quizTitle
         searchCollectionViewCell.cellButton.tag = indexPath.row
         searchCollectionViewCell.cellButton.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
-//        cell.delegate = self
         return searchCollectionViewCell
     }
     @objc func cellButtonPressed(sender: SearchCollectionViewCell) {
@@ -99,29 +91,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
             }
             QuizModel.appendQuiz(quiz: quiz)
             setQuizMessage(bool: true)
-
         }
-
     }
-
-    
-    
 }
-//extension SearchViewController: SearchCollectionViewCellDelegate {
-//    func actionAlert() {
-//        guard let selectedCell = searchView.mySearchCollectionView.cellForItem(at: 0) as? SearchCollectionViewCell else {return}
-//
-//        print("Search + button pressed")
-//        if QuizModel.quizAlreadyCreated(newTitle: searchView., username: "@username") {
-//            //alert that says quiz already exists
-//        } else {
-//            guard let quiz = saveQuiz() else {
-//                print("Failed to save quiz")
-//                return
-//            }
-//            QuizModel.appendQuiz(quiz: quiz)
-//
-//    }
-//    }
-//
-//}
+

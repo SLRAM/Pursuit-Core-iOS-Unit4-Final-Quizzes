@@ -44,9 +44,6 @@ extension QuizDetailViewController: UICollectionViewDataSource, UICollectionView
                 cell?.cellLabel.text = self.quizTitle
             })
         }
-
     }
-    
-    
 }
 

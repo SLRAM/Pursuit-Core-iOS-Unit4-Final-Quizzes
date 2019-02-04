@@ -37,7 +37,6 @@ final class QuizModel {
         return quizTitle
     }
     
-
     static func saveQuiz() {
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename)
 

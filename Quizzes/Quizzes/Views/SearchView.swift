@@ -11,24 +11,19 @@ import UIKit
 class SearchView: UIView {
     
     public lazy var mySearchCollectionView: UICollectionView = {
-
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 350, height: 350) // cell size
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
-        
         let cv = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
         cv.register(SearchCollectionViewCell.self, forCellWithReuseIdentifier: "SearchCollectionViewCell")
         cv.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         return cv
     }()
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

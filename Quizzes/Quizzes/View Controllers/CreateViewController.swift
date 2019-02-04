@@ -12,11 +12,10 @@ class CreateViewController: UIViewController {
 
     private let createView = CreateView()
     var quiz: Quiz?
-
-    
     let titlePlaceholder = "Enter the quiz title"
     let firstPlaceholder = "Enter first quiz fact"
     let secondPlaceholder = "Enter second quiz fact"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(createView)
@@ -57,15 +56,12 @@ class CreateViewController: UIViewController {
             let firstFact = createView.firstQuizTextView.text,
             let secondFact = createView.secondQuizTextView.text else {return nil}
         let facts = [firstFact,secondFact]
-        //********
         guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return nil}
-
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.long
         formatter.timeStyle = .medium
         let timestamp = formatter.string(from: date)
-
         let quiz = Quiz.init(facts: facts, quizTitle: quizTitle, username: username, createdAt: timestamp)
         
         return quiz
@@ -154,6 +150,5 @@ extension CreateViewController: CreateViewDelegate {
                 self.createView.resignFirstResponder()
             }
         }
-        
     }
 }

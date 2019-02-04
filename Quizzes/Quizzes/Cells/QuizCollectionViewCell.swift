@@ -32,11 +32,6 @@ class QuizCollectionViewCell: UICollectionViewCell {
         delegate?.actionSheet(tag: sender.tag)
     }
     
-    
-//    override func prepareForReuse() {
-//        self.cellImage.image = nil
-//    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -72,7 +67,5 @@ extension QuizCollectionViewCell {
         cellLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
         cellLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
         cellLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
-
     }
-
 }

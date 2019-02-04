@@ -19,18 +19,13 @@ class QuizViewController: UIViewController {
             }
         }
     }
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //if cells count is 0 then load different view
         guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
         quizzes = QuizModel.getQuizzes(username: username)
         setupQuizView()
         quizView.myQuizCollectionView.dataSource = self
         quizView.myQuizCollectionView.delegate = self
-//        self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
-
         print(DataPersistenceManager.documentsDirectory())
 
     }
@@ -49,10 +44,6 @@ class QuizViewController: UIViewController {
             emptyQuizView.firstQuizTextView.reloadInputViews()
         }
     }
-    
-    
-    
-
 }
 extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -75,21 +66,10 @@ extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelega
         let quiz = QuizModel.getQuizzes(username: username)[indexPath.row]
         let detailVC = QuizDetailViewController()
         detailVC.quiz = quiz
-//        detailVC.quizTitle = quiz.quizTitle
         detailVC.quizTitle = selectedCell.cellLabel.text
         detailVC.facts = quiz.facts
-        //selected cell is info I have available on the cell
-        //quiz is info available from the quiz model
-        //detailVC is info i want to set on the detail page
-        
-//        detailVC.detailView.detailFavoritesImage.image = selectedCell.cellImage.image
-//        detailVC.detailView.detailLabel.text = book.bookDetails.first?.author
-
-
         navigationController?.pushViewController(detailVC, animated: true)
     }
-    
-    
 }
 extension QuizViewController: QuizCollectionViewCellDelegate {
     func actionSheet(tag: Int) {
@@ -100,14 +80,11 @@ extension QuizViewController: QuizCollectionViewCellDelegate {
             self.quizzes = QuizModel.getQuizzes(username: username)
             self.setupQuizView()
         })
-
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
     }
-    
-    
 }
 
 

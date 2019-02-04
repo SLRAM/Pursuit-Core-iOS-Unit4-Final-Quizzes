@@ -34,7 +34,6 @@ class CreateView: UIView {
         textView.text = "Enter the quiz title"
         textView.tag = 0
 
-
         return textView
     }()
     lazy var firstQuizTextView: UITextView = {
@@ -77,7 +76,6 @@ extension CreateView {
         setupTitleTextField()
         setupFirstQuizTextField()
         setupSecondTextField()
-//        addSubview(createButton)
     }
     func setupTitleTextField() {
         addSubview(titleTextView)

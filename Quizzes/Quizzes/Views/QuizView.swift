@@ -13,10 +13,8 @@ class QuizView: UIView {
     
     public lazy var myQuizCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        //make cells adjust
         let width = (frame.size.width)/2 - 20
         let height = (frame.size.height)/3
-
         layout.itemSize = CGSize.init(width: width, height: height) // cell size
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
