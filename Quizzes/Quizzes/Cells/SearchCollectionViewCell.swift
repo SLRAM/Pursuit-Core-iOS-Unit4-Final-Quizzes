@@ -25,13 +25,13 @@ class SearchCollectionViewCell: UICollectionViewCell {
     lazy var cellButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "addIconFilled"), for: .normal)
-                button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(cellButtonPressed), for: .touchUpInside)
+    
         return button
     }()
-        @objc func cellButtonPressed(_ sender: UIButton) {
-            delegate?.actionAlert()
-            print("Search + button pressed")
-        }
+//        @objc func cellButtonPressed(_ sender: UIButton) {
+//            delegate?.actionAlert()
+//        }
     
     
     //    override func prepareForReuse() {

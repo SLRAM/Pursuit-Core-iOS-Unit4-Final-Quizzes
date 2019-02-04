@@ -49,11 +49,11 @@ class CreateViewController: UIViewController {
     
     private func setQuizMessage(bool: Bool) {
         if bool {
-            let alert = UIAlertController(title: "Your Quiz has been saved!", message: "", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Your Quiz has been saved!", message: nil, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Sorry that quiz exists already!", message: "", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Sorry that quiz exists already!", message: nil, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
