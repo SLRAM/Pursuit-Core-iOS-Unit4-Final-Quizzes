@@ -17,12 +17,11 @@ class CreateView: UIView {
 
     
     public lazy var createButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Favorite", style: UIBarButtonItem.Style.plain, target: self, action: #selector(createPressed))
+        let button = UIBarButtonItem(title: "Create", style: UIBarButtonItem.Style.plain, target: self, action: #selector(createPressed))
         return button
     }()
     @objc func createPressed() {
         delegate?.createPressed()
-        print("create pressed")
     }
     
     lazy var titleTextView: UITextView = {

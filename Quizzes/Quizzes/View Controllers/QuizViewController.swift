@@ -24,7 +24,8 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //if cells count is 0 then load different view
-        quizzes = QuizModel.getQuizzes()
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
+        quizzes = QuizModel.getQuizzes(username: username)
         setupQuizView()
         quizView.myQuizCollectionView.dataSource = self
         quizView.myQuizCollectionView.delegate = self
@@ -35,7 +36,8 @@ class QuizViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        quizzes = QuizModel.getQuizzes()
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
+        quizzes = QuizModel.getQuizzes(username: username)
         setupQuizView()
     }
     func setupQuizView() {
@@ -53,22 +55,24 @@ class QuizViewController: UIViewController {
 
 }
 extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return quizzes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuizCollectionViewCell", for: indexPath) as? QuizCollectionViewCell else {return UICollectionViewCell()}
-        let quiz = QuizModel.getQuizzes()[indexPath.row]
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return UICollectionViewCell()}
+        let quiz = QuizModel.getQuizzes(username: username)[indexPath.row]
         cell.cellLabel.text = quiz.quizTitle
         cell.cellButton.tag = indexPath.row
-        print("cell tag: \(cell.cellButton.tag)")
         cell.delegate = self
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedCell = quizView.myQuizCollectionView.cellForItem(at: indexPath) as? QuizCollectionViewCell else {return}
-        let quiz = QuizModel.getQuizzes()[indexPath.row]
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
+        let quiz = QuizModel.getQuizzes(username: username)[indexPath.row]
         let detailVC = QuizDetailViewController()
         detailVC.quiz = quiz
 //        detailVC.quizTitle = quiz.quizTitle
@@ -89,11 +93,11 @@ extension QuizViewController: UICollectionViewDataSource, UICollectionViewDelega
 }
 extension QuizViewController: QuizCollectionViewCellDelegate {
     func actionSheet(tag: Int) {
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let  deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
-            print("Tag: \(tag)")
             QuizModel.deleteBook(index: tag)
-            self.quizzes = QuizModel.getQuizzes()
+            self.quizzes = QuizModel.getQuizzes(username: username)
             self.setupQuizView()
         })
 
@@ -105,3 +109,5 @@ extension QuizViewController: QuizCollectionViewCellDelegate {
     
     
 }
+
+

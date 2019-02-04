@@ -29,9 +29,7 @@ class QuizCollectionViewCell: UICollectionViewCell {
         return button
     }()
     @objc func cellButtonPressed(_ sender: UIButton) {
-        print(sender.tag)
         delegate?.actionSheet(tag: sender.tag)
-        print("quiz ... button pressed")
     }
     
     

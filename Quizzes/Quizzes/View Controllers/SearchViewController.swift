@@ -10,18 +10,11 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-//    private var quizzes = [Quiz]()
     
     private var searchInfo = [SearchModel](){
         didSet {
             DispatchQueue.main.async {
                 self.searchView.mySearchCollectionView.reloadData()
-//                if let categorySelected = UserDefaults.standard.value(forKey: UserDefaultsKeys.settingsCategoryKey) as? Int {
-//                    self.bestSellerView.myBestSellerPickerView.selectRow(categorySelected, inComponent: 0, animated: true)
-//                    self.setupBooks(listName: self.bestSellerCategories[categorySelected].listNameEncoded)
-//                } else {
-//                    print("no category in defaults")
-//                }
             }
         }
     }
@@ -30,9 +23,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(searchView)
-//        quizzes = QuizModel.getQuizzes()
         setupCells()
-
         searchView.mySearchCollectionView.dataSource = self
         searchView.mySearchCollectionView.delegate = self
         
@@ -54,7 +45,7 @@ class SearchViewController: UIViewController {
         let secondFact = search.facts[1]
         let facts = [firstFact,secondFact]
         //********
-        let username = "@username"
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return nil}
         
         let date = Date()
         let formatter = DateFormatter()
@@ -83,7 +74,6 @@ class SearchViewController: UIViewController {
 }
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(searchInfo.count)
         return searchInfo.count
     }
     
@@ -98,9 +88,8 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     @objc func cellButtonPressed(sender: SearchCollectionViewCell) {
         let search = searchInfo[sender.tag]
-        print("+ pressed sender tag: \(sender.tag)")
-        print(search.quizTitle)
-        if QuizModel.quizAlreadyCreated(newTitle: search.quizTitle, username: "@username") {
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
+        if QuizModel.quizAlreadyCreated(newTitle: search.quizTitle, username: username) {
             //alert that says quiz already exists
             setQuizMessage(bool: false)
         } else {

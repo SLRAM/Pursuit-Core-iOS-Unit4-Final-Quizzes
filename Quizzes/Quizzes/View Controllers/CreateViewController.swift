@@ -20,12 +20,36 @@ class CreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(createView)
-//        var createViewController = self.storyboard!.instantiateViewControllerWithIdentifier("CreateViewController") as CreateViewController
         createView.titleTextView.delegate = self
         createView.firstQuizTextView.delegate = self
         createView.secondQuizTextView.delegate = self
         createView.delegate = self
         navigationItem.rightBarButtonItem = createView.createButton
+        checkLoggedIn()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        checkLoggedIn()
+    }
+    func checkLoggedIn() {
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
+        if username == "@username" {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            createView.titleTextView.isEditable = false
+            createView.firstQuizTextView.isEditable = false
+            createView.secondQuizTextView.isEditable = false
+
+            let alertController = UIAlertController(title: "No user logged in.", message: "To access this feature you need to login on the profile tab.", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
+            })
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            createView.titleTextView.isEditable = true
+            createView.firstQuizTextView.isEditable = true
+            createView.secondQuizTextView.isEditable = true
+        }
     }
 
     private func saveQuiz()-> Quiz? {
@@ -34,7 +58,7 @@ class CreateViewController: UIViewController {
             let secondFact = createView.secondQuizTextView.text else {return nil}
         let facts = [firstFact,secondFact]
         //********
-        let username = "@user"
+        guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return nil}
 
         let date = Date()
         let formatter = DateFormatter()
@@ -99,24 +123,37 @@ extension CreateViewController: UITextViewDelegate {
 }
 extension CreateViewController: CreateViewDelegate {
     func createPressed() {
-        //********
-        if QuizModel.quizAlreadyCreated(newTitle: createView.titleTextView.text, username: "@username") {
-            setQuizMessage(bool: false)
-            //alert that says quiz already exists
+        if createView.titleTextView.text == titlePlaceholder || createView.firstQuizTextView.text == firstPlaceholder || createView.secondQuizTextView.text == secondPlaceholder {
+            let alertController = UIAlertController(title: "Please enter in some information other than the placeholder", message: nil, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
+            })
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+        } else if createView.titleTextView.text == "" || createView.firstQuizTextView.text == "" || createView.secondQuizTextView.text == ""{
+            let alertController = UIAlertController(title: "Please do not leave any sections blank", message: nil, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
+            })
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
         } else {
-            guard let quiz = saveQuiz() else {
-                print("Failed to save quiz")
-                return
+            guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
+            if QuizModel.quizAlreadyCreated(newTitle: createView.titleTextView.text, username: username) {
+                self.setQuizMessage(bool: false)
+            } else {
+                guard let quiz = self.saveQuiz() else {
+                    print("Failed to save quiz")
+                    return
+                }
+                QuizModel.appendQuiz(quiz: quiz)
+                self.setQuizMessage(bool: true)
+                self.createView.titleTextView.text = titlePlaceholder
+                self.createView.firstQuizTextView.text = firstPlaceholder
+                self.createView.secondQuizTextView.text = secondPlaceholder
+                self.createView.resignFirstResponder()
             }
-            QuizModel.appendQuiz(quiz: quiz)
-            setQuizMessage(bool: true)
-            createView.titleTextView.text = titlePlaceholder
-            createView.firstQuizTextView.text = firstPlaceholder
-            createView.secondQuizTextView.text = secondPlaceholder
-            createView.resignFirstResponder()
-            //reset views
         }
+        
     }
-    
-    
 }

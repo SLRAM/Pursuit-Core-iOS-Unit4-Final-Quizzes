@@ -36,9 +36,7 @@ class ProfileView: UIView {
         return button
     }()
     @objc func profileImagePressed(_ sender: UIButton) {
-        print("Profile image pressed")
         delegate?.profileImagePressed()
-        //        delegate?.actionSheet(tag: sender.tag)
     }
     
     lazy var profileNameButton: UIButton = {
@@ -50,7 +48,6 @@ class ProfileView: UIView {
         return button
     }()
     @objc func profileNamePressed(_ sender: UIButton) {
-        print("Profile name pressed")
         delegate?.profileNamePressed()
     }
     

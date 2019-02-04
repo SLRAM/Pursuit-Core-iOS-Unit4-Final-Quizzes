@@ -18,7 +18,6 @@ class QuizDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(quizDetailView)
-        print(facts![0])
         quizDetailView.myQuizCollectionView.dataSource = self
         quizDetailView.myQuizCollectionView.delegate = self
     }

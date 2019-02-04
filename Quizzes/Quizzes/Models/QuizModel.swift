@@ -9,6 +9,7 @@
 import Foundation
 
 final class QuizModel {
+    
     private static let filename = "SavedQuizList.plist"
     private static let userFilename = "SavedUserList.plist"
 
@@ -61,7 +62,8 @@ final class QuizModel {
         saveQuiz()
     }
 
-    static func getQuizzes() -> [Quiz] {
+    static func getQuizzes(username: String) -> [Quiz] {
+        
         let path = DataPersistenceManager.filepathToDocumentsDirectory(filename: filename).path
 
         if FileManager.default.fileExists(atPath: path) {
@@ -79,7 +81,7 @@ final class QuizModel {
         }
         quizzes = quizzes.sorted {$0.createdAt > $1.createdAt}
         filtered = quizzes
-        filtered = filtered.filter { $0.username == "@username" }
+        filtered = filtered.filter { $0.username == username }
 
         return filtered
     }
