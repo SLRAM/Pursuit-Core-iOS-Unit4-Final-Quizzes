@@ -115,6 +115,8 @@ extension ProfileViewController: ProfileViewDelegate {
         self.present(optionMenu, animated: true, completion: nil)
         guard let user = saveUser() else {return}
         QuizModel.appendUser(user: user)
+//        profileView.profileImageButton.setImage(UIImage(data: image), for: .normal)
+
     }
     func profileNamePressed() {
         userRegister()
