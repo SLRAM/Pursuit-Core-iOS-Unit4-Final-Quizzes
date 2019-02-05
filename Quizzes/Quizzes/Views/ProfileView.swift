@@ -26,9 +26,9 @@ class ProfileView: UIView {
         return label
     }()
     lazy var profileImageButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton() //0,0,0,0
         //Currently does not adjust!!!!!! Circle on iPhone XR
-        button.layer.cornerRadius = button.bounds.width/2.0 + 65
+        //button.layer.cornerRadius = button.bounds.width/2.0 + 65
         button.clipsToBounds = true
         button.setImage(UIImage(named: "placeholderImage"), for: .normal)
         button.addTarget(self, action: #selector(profileImagePressed), for: .touchUpInside)
@@ -62,6 +62,12 @@ class ProfileView: UIView {
     private func commonInit() {
         backgroundColor = #colorLiteral(red: 0.928835094, green: 0.9233136773, blue: 0.9330795407, alpha: 1)
         setupCollectionView()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        profileImageButton.imageView?.layer.cornerRadius = profileImageButton.bounds.width / 2.0
+        profileImageButton.imageView?.clipsToBounds = true
     }
     
 }

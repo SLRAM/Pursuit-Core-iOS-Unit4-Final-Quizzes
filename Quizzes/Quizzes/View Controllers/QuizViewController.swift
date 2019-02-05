@@ -19,10 +19,18 @@ class QuizViewController: UIViewController {
             }
         }
     }
+    var users = [User]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.quizView.myQuizCollectionView.reloadData()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let username = UserDefaults.standard.string(forKey: UserDefaultsKeys.usernameKey) else {return}
         quizzes = QuizModel.getQuizzes(username: username)
+        users = QuizModel.getUser()
         setupQuizView()
         quizView.myQuizCollectionView.dataSource = self
         quizView.myQuizCollectionView.delegate = self

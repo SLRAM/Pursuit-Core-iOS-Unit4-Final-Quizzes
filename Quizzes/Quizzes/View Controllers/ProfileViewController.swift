@@ -104,8 +104,13 @@ extension ProfileViewController: ProfileViewDelegate {
             self.imagePickerViewController.sourceType = .photoLibrary
             self.showImagePickerViewController()
         })
+        let cameraAction = UIAlertAction(title: "Take a photo", style: .default, handler: { (action) -> Void in
+            self.imagePickerViewController.sourceType = .camera
+            self.showImagePickerViewController()
+        })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         optionMenu.addAction(libraryAction)
+        optionMenu.addAction(cameraAction)
         optionMenu.addAction(cancelAction)
         self.present(optionMenu, animated: true, completion: nil)
         guard let user = saveUser() else {return}

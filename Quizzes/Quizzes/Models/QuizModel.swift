@@ -17,6 +17,7 @@ final class QuizModel {
     private static var filtered = [Quiz]()
     private static var users = [User]()
 
+
     private init() {}
     static func appendQuiz(quiz: Quiz) {
         quizzes.append(quiz)
